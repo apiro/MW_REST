@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import res.model.FilterResultDataService;
 import res.model.User;
 
-@Path("/api/users/filter/")
+@Path("/api/query/filterResult/")
 public class ResultResource {
 
 	
@@ -22,7 +22,9 @@ public class ResultResource {
 	@Path("{resultId}")
 	public Response getResult(@PathParam("resultId")String resultId){
 		
-		List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(Integer.parseInt(resultId)).getUserMap().values());
+		System.out.println(dataServiceResults.getFilterResult(resultId));
+		
+		List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(resultId).getUserMap().values());
 		
 		return Response.ok().entity(new GenericEntity<List<User>>(list) {}).build();
 	}

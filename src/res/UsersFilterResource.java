@@ -2,9 +2,11 @@ package res;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -36,34 +38,43 @@ public class UsersFilterResource {
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-	public Response filter(MultivaluedMap formParams) throws URISyntaxException {
+	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
 		System.out.println("> POST /users/filter");
 		
 		setFilters(formParams);
 
 		HashMap<String, User> results = dataService.filter(params);
+		
+		if(results.isEmpty()) {
+			return Response.status(Response.Status.NOT_FOUND).entity("Empty filter results").build();
+		}
 	
 		FilterResult filterResults = new FilterResult();
 		filterResults.setUserMap(results);
+
+		String idResult = dataServiceResults.addFilterResult(filterResults);
 		
-		Integer idResult = dataServiceResults.addFilterResult(filterResults);
-		
-		java.net.URI location = new java.net.URI(uriInfo.getAbsolutePath().toString() + "/" + idResult.toString());
+		java.net.URI location = new java.net.URI("http://localhost:8080/BroadGamesREST/jaxrs/api/query/filterResult/" + idResult.toString());
 		
 		System.out.println("> location: " + location);
 		
-		for(Entry e: results.entrySet()) {
-			System.out.println("> entry selected: " + e.getValue().toString());
-		}
+		Iterator<User> it = dataServiceResults.getFilterResult(idResult).getUserMap().values().iterator();
 		
+		while(it.hasNext()) {
+			System.out.println("> entry selected: " + it.next());
+		}
+
 		return Response.temporaryRedirect(location).build();
 	}
 	
 	public void setFilters(MultivaluedMap<String, String> formParams){
 		
-		for(Entry e:formParams.entrySet()) {
-			params.put(e.getKey().toString(), e.getValue().toString());
-		}
+		Iterator<String> it = formParams.keySet().iterator();
+		
+		while(it.hasNext()) {
+			String theKey = (String)it.next();
+			params.put(theKey, formParams.getFirst(theKey));
+		}	
 	}
 }

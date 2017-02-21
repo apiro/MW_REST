@@ -34,20 +34,18 @@ public class UsersResource {
 		return new UserResource(id);
 	}
 	
-	@Path("/filter")
-	public UsersFilterResource getUsersFilterResource() {
+	@Path("/search/")
+	public UsersFilterResource getRes() {
 		System.out.println("ciao");
 		
 		return new UsersFilterResource(uriInfo);
 	}
-	
+
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response getUsers() {
 		
 		System.out.println("GET /users");
-		
-		
 		
 		List<User> list = new ArrayList<User>(dataService.getUserMap().values());
 	
@@ -63,6 +61,7 @@ public class UsersResource {
     		@FormParam("phoneNumber") String phoneNumber) {
 		
 		System.out.println("POST /users");
+		
 		User user = new User(name, address, phoneNumber);
 		dataService.addUser(user);
 		
