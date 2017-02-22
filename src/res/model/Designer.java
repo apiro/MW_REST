@@ -1,3 +1,4 @@
+//NOT USED
 package res.model;
 
 import javax.xml.bind.annotation.XmlRootElement;

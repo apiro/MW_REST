@@ -13,7 +13,7 @@ http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/
 
 http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/  
         GET     list of all games
-        POST    create new game   -   name
+        POST    create new game   -   name, designers(comma-separated list)
 
 http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/{id}
         GET     view info game {id}

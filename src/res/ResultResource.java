@@ -1,4 +1,5 @@
-/*package res;
+//NOT USED
+package res;
 
 
 import javax.ws.rs.GET;
@@ -26,4 +27,4 @@ public class ResultResource {
 		return Response.ok(res).build();
 	}
 	
-}*/
+}

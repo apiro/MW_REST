@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 public class BoardGame {
 
 	@XmlElement(name="Designer", required=false)
-	private ArrayList<Designer> designers = new ArrayList<Designer>();
+	private ArrayList<String> designers = new ArrayList<String>();
 	
 	@XmlAttribute(name="id", required=true)
 	private String id;
@@ -28,17 +28,22 @@ public class BoardGame {
 	public BoardGame() {
 	}
 	
-	public BoardGame(String name) {
+	public BoardGame(String name, String designers) {
 		super();
 		this.id = null;
 		this.name = name;
+		
+		String[] d = designers.split(",");
+		for(String s: d){
+			this.designers.add(s);
+		}
 	}
 	
-	public ArrayList<Designer> getDesigners() {
+	public ArrayList<String> getDesigners() {
 		return designers;
 	}
 
-	public void setDesigners(ArrayList<Designer> designers) {
+	public void setDesigners(ArrayList<String> designers) {
 		this.designers = designers;
 	}
 

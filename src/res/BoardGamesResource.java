@@ -54,11 +54,13 @@ public class BoardGamesResource {
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createCustomer(@FormParam("name") String name){
+    public Response createCustomer(
+    		@FormParam("name") String name,
+    		@FormParam("designers") String designers){
 		
 		System.out.println("POST /users");
 		
-		BoardGame game = new BoardGame(name);
+		BoardGame game = new BoardGame(name, designers);
 		dataService.addBoardGame(game);
 		
 		System.out.println(game.getName());
