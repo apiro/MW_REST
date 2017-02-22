@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import res.model.FilterResult;
+import res.model.UserFilterResult;
 import res.model.FilterResultDataService;
 
 @Path("/api/query/filterResult/")
@@ -23,7 +23,7 @@ public class ResultResource {
 		System.out.println(dataServiceResults.getFilterResult(resultId));
 		
 		//List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(resultId).getUserMap().values());
-		FilterResult res = dataServiceResults.getFilterResult(resultId);
+		UserFilterResult res = dataServiceResults.getFilterResult(resultId);
 		return Response.ok(res).build();
 	}
 	

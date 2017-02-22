@@ -35,7 +35,7 @@ public class BoardGame {
 		
 		String[] d = designers.split(",");
 		for(String s: d){
-			this.designers.add(s);
+			this.designers.add(s.trim());
 		}
 	}
 	

@@ -1,7 +1,5 @@
 package res.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,14 +11,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="FilterResult")
-public class FilterResult {
+public class BoardGamesFilterResult {
 
-	@XmlElement(name="User", required=false)
-	private List<User>users;
+	@XmlElement(name="Games", required=false)
+	private List<BoardGame>games;
 	
 	//private HashMap<String, User> userMap = new HashMap<String, User>();
 	
-	public FilterResult(){
+	public BoardGamesFilterResult(){
 		
 	}
 	
@@ -28,12 +26,12 @@ public class FilterResult {
 		return userMap;
 	}*/
 
-	public void setUserMap(HashMap<String,User> userMap) {
+	public void setGamesList(List<BoardGame> games) {
 		//this.userMap = userMap;
-		this.users = new ArrayList<User>(userMap.values());
+		this.games = games;
 	}
 	
-	public List<User> getUsers() {
-		return users;
+	public List<BoardGame> getGames() {
+		return games;
 	}
 }

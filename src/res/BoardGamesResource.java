@@ -33,12 +33,10 @@ public class BoardGamesResource {
 		return new BoardGameResource(id);
 	}
 	
-	/*@Path("/search/")
-	public UsersFilterResource getRes() {
-		System.out.println("ciao");
-		
-		return new UsersFilterResource(uriInfo);
-	}*/
+	@Path("/search/")
+	public BoardGamesFilterResource getRes() {
+		return new BoardGamesFilterResource(uriInfo);
+	}
 
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

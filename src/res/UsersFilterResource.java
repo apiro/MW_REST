@@ -4,21 +4,17 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map.Entry;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import res.model.FilterResult;
+import res.model.UserFilterResult;
 import res.model.FilterResultDataService;
 import res.model.User;
 import res.model.UsersDataService;
@@ -50,11 +46,11 @@ public class UsersFilterResource {
 		HashMap<String, User> results = dataService.filter(params);
 		
 		if(results.isEmpty()) {
-			return Response.status(Response.Status.NOT_FOUND).entity("Empty filter results").build();
+			return Response.status(Response.Status.NOT_FOUND).entity(new User()).build();
 		}
 	
-		FilterResult filterResults = new FilterResult();
-		filterResults.setUserMap(results);
+		UserFilterResult filterResults = new UserFilterResult();
+		filterResults.setUserList(new ArrayList<User>(results.values()));
 
 		String idResult = dataServiceResults.addFilterResult(filterResults);
 		
@@ -68,7 +64,7 @@ public class UsersFilterResource {
 		}
 		
 		//List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(idResult).getUserMap().values());
-		FilterResult res = dataServiceResults.getFilterResult(idResult);
+		UserFilterResult res = dataServiceResults.getFilterResult(idResult);
 		return Response.ok(res).build();
 		//return Response.ok().entity(new GenericEntity<List<User>>(list) {}).build();
 				//temporaryRedirect(location).build();

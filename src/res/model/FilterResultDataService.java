@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 public class FilterResultDataService {
 
-	private HashMap<String, FilterResult> activeResultsMap = new HashMap<String, FilterResult>();
+	private HashMap<String, UserFilterResult> activeResultsMap = new HashMap<String, UserFilterResult>();
 	
     private static FilterResultDataService instance = new FilterResultDataService();
     
@@ -15,7 +15,7 @@ public class FilterResultDataService {
         return instance;
     }
 
-    public String addFilterResult(FilterResult filterResult) {
+    public String addFilterResult(UserFilterResult filterResult) {
     	activeResultsMap.put(Integer.toString(counter), filterResult);
     	
     	System.out.println(activeResultsMap.get(0));
@@ -24,7 +24,7 @@ public class FilterResultDataService {
     	return Integer.toString(counter-1);
     }
     
-    public FilterResult getFilterResult(String key) {
+    public UserFilterResult getFilterResult(String key) {
     	
     	System.out.println(activeResultsMap.size());
     	
