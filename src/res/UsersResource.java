@@ -69,6 +69,6 @@ public class UsersResource {
 		String uriString = uriInfo.getAbsolutePath().toString() + "/" + user.getId();
 		URI uri = URI.create(uriString);
 
-        return Response.created(uri).build();
+        return Response.ok(uriString).build();
     }
 }

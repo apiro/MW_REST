@@ -1,8 +1,10 @@
 package res;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 import javax.ws.rs.Consumes;
@@ -10,6 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -37,7 +40,7 @@ public class UsersFilterResource {
 	
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
+	@Produces("application/json")
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
 		System.out.println("> POST /users/filter");
@@ -55,17 +58,20 @@ public class UsersFilterResource {
 
 		String idResult = dataServiceResults.addFilterResult(filterResults);
 		
-		java.net.URI location = new java.net.URI("http://localhost:8080/BroadGamesREST/jaxrs/api/query/filterResult/" + idResult.toString());
+		//java.net.URI location = new java.net.URI("http://localhost:8080/BroadGamesREST/jaxrs/api/query/filterResult/" + idResult.toString());
+		//System.out.println("> location: " + location);
 		
-		System.out.println("> location: " + location);
-		
-		Iterator<User> it = dataServiceResults.getFilterResult(idResult).getUserMap().values().iterator();
+		Iterator<User> it = dataServiceResults.getFilterResult(idResult).getUsers().iterator();
 		
 		while(it.hasNext()) {
 			System.out.println("> entry selected: " + it.next());
 		}
-
-		return Response.temporaryRedirect(location).build();
+		
+		//List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(idResult).getUserMap().values());
+		FilterResult res = dataServiceResults.getFilterResult(idResult);
+		return Response.ok(res).build();
+		//return Response.ok().entity(new GenericEntity<List<User>>(list) {}).build();
+				//temporaryRedirect(location).build();
 	}
 	
 	public void setFilters(MultivaluedMap<String, String> formParams){

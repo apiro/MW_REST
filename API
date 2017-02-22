@@ -1,0 +1,28 @@
+(* optional)
+http://localhost:8080/BroadGamesREST/jaxrs/api/users
+        GET     list of all users
+        POST    create new user   -   name, address, phoneNumber  
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/users/{id}
+        GET     view info user {id}
+        DELETE  delete user {id}
+        PUT     udpate user {id}    -   name, address, phoneNumber
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/
+        POST    return list of filtered users   -   name*, address*, phoneNumber*
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/  
+        GET     list of all games
+        POST    create new game   -   name
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/{id}
+        GET     view info game {id}
+        DELETE  delete game {id}
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/search/
+        TODO
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/plays/
+        TODO
+
+

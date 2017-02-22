@@ -9,4 +9,7 @@ public class Designer extends User {
 		super(name, address, phoneNumber);
 	}
 	
+	public Designer() {
+	}
+	
 }

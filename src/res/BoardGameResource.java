@@ -9,15 +9,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import res.model.UsersDataService;
+import res.model.BoardGame;
+import res.model.BoardGamesDataService;
 import res.model.User;
 
-public class UserResource {
+public class BoardGameResource {
 
 	private String id;
 	
-	private UsersDataService dataService = UsersDataService.getInstance();
+	private BoardGamesDataService dataService = BoardGamesDataService.getInstance();
 
-	public UserResource(String id){
+	public BoardGameResource(String id){
 		this.id = id;
 	}
 	
@@ -26,13 +28,13 @@ public class UserResource {
 		
 		System.out.println("GET {id}");
 
-		User user = dataService.getUserById(id);
+		BoardGame game = dataService.getGameById(id);
 		
-		if(user == null) {
-			return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
+		if(game == null) {
+			return Response.status(Response.Status.NOT_FOUND).entity("Game not found").build();
 		}
 		
-        return Response.ok(user, MediaType.APPLICATION_JSON).build();
+        return Response.ok(game, MediaType.APPLICATION_JSON).build();
     }
 	
 	@DELETE
@@ -40,16 +42,16 @@ public class UserResource {
 		
 		System.out.println("DELETE {id}");
 		
-		int status = dataService.removeUser(id);
+		int status = dataService.deleteGame(id);
 		
 		if(status == 0) {
-			return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
+			return Response.status(Response.Status.NOT_FOUND).entity("Game not found").build();
 		}
 		
-        return Response.status(202).entity("User deleted successfully").build();
+        return Response.status(202).entity("Game deleted successfully").build();
     }
 	
-	@PUT
+	/*@PUT
     public Response updateCustomer(
     		@FormParam("name") String name,
     		@FormParam("address") String address,
@@ -66,5 +68,5 @@ public class UserResource {
 		}
 		
 		return Response.status(202).entity("User updated successfully").build();
-    }
+    }*/
 }

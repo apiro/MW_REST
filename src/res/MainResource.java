@@ -19,7 +19,7 @@ public class MainResource {
 	
 	@Path("/boardGames/")
 	public BoardGamesResource getCustomers(){
-		return new BoardGamesResource();
+		return new BoardGamesResource(uriInfo);
 	}
 	
 	@Path("/plays/")

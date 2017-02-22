@@ -19,17 +19,27 @@ public class BoardGamesDataService {
         return newId;
     }
 
-    public List<BoardGame> getDiariesList() {
+    public List<BoardGame> getGamesList() {
         return boardGamesList;
     }
 
 
-    public BoardGame getCustomerById(String id) {
-        for (BoardGame diary : boardGamesList) {
-            if (diary.getId().equals(id)) {
-                return diary;
+    public BoardGame getGameById(String id) {
+        for (BoardGame game : boardGamesList) {
+            if (game.getId().equals(id)) {
+                return game;
             }
         }
         return null;
+    }
+    
+    public int deleteGame(String id) {
+        for (BoardGame game : boardGamesList) {
+            if (game.getId().equals(id)) {
+                boardGamesList.remove(game);
+                return 1;
+            }
+        }
+        return 0;
     }
 }

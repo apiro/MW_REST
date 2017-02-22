@@ -1,18 +1,23 @@
 package res.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="User")
 public class User { 
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
-	}
 
-	private String id; 
+	@XmlAttribute(name="id", required=true)
+	private String id;
+	@XmlAttribute(name="name", required=true)
     private String name; 
+	@XmlAttribute(name="address", required=true)
     private String address; 
+	@XmlAttribute(name="phoneNumber", required=true)
     private String phoneNumber; 
  
     public User() { 
@@ -56,4 +61,10 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
+	}
+	
 }
