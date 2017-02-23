@@ -1,7 +1,5 @@
-package res.model;
+package res.model.play;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,21 +11,20 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="FilterResult")
-public class UserFilterResult {
+public class PlayFilterResult {
 
-	@XmlElement(name="User", required=false)
-	private List<User>users;
+	@XmlElement(name="Plays", required=false)
+	private List<Play>plays;
 	
-	public UserFilterResult(){
+	public PlayFilterResult(){
 		
 	}
 	
-	public void setUserList(List<User> users) {
-		//this.userMap = userMap;
-		this.users = users;
+	public void setPlaysList(List<Play> plays) {
+		this.plays = plays;
 	}
 	
-	public List<User> getUsers() {
-		return users;
+	public List<Play> getPlays() {
+		return plays;
 	}
 }

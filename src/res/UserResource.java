@@ -8,8 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import res.model.UsersDataService;
-import res.model.User;
+import res.model.user.User;
+import res.model.user.UsersDataService;
 
 public class UserResource {
 

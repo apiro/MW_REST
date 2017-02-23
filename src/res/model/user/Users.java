@@ -1,4 +1,4 @@
-package res.model;
+package res.model.user;
 
 import java.util.HashMap;
 import java.util.Map.Entry;

@@ -1,4 +1,4 @@
-package res.model;
+package res.model.game;
 
 import java.util.List;
 
@@ -16,18 +16,10 @@ public class BoardGamesFilterResult {
 	@XmlElement(name="Games", required=false)
 	private List<BoardGame>games;
 	
-	//private HashMap<String, User> userMap = new HashMap<String, User>();
-	
 	public BoardGamesFilterResult(){
-		
 	}
 	
-	/*public HashMap<String, User> getUserMap() {
-		return userMap;
-	}*/
-
 	public void setGamesList(List<BoardGame> games) {
-		//this.userMap = userMap;
 		this.games = games;
 	}
 	

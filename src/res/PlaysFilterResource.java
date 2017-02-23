@@ -18,7 +18,7 @@ import res.model.game.BoardGame;
 import res.model.game.BoardGamesDataService;
 import res.model.game.BoardGamesFilterResult;
 
-public class BoardGamesFilterResource {
+public class PlaysFilterResource {
 
 	@Context UriInfo uriInfo;
 	
@@ -26,7 +26,7 @@ public class BoardGamesFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
-	public BoardGamesFilterResource(UriInfo uriInfo) {
+	public PlaysFilterResource(UriInfo uriInfo) {
 		this.uriInfo = uriInfo;
 	}
 	

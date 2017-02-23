@@ -14,10 +14,10 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import res.model.UserFilterResult;
 import res.model.FilterResultDataService;
-import res.model.User;
-import res.model.UsersDataService;
+import res.model.user.User;
+import res.model.user.UserFilterResult;
+import res.model.user.UsersDataService;
 
 
 public class UsersFilterResource {

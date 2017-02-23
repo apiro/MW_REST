@@ -17,8 +17,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import res.model.UsersDataService;
-import res.model.User;
+import res.model.user.User;
+import res.model.user.UsersDataService;
 
 public class UsersResource {
 	
@@ -53,7 +53,7 @@ public class UsersResource {
 	}
 	
 	@POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.TEXT_PLAIN)
     public Response createCustomer(
     		@FormParam("name") String name,

@@ -1,4 +1,4 @@
-package res.model;
+package res.model.user;
 
 import java.util.HashMap;
 
@@ -38,5 +38,9 @@ public class UsersDataService {
     
     public HashMap<String, User> filter(HashMap<String, String> params) {
         return users.filterUsers(params);
+    }
+    
+    public boolean findId(String id){
+    	return users.getUserMap().containsKey(id);
     }
 }

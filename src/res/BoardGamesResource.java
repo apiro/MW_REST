@@ -21,8 +21,8 @@ import javax.ws.rs.core.UriInfo;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
-import res.model.BoardGame;
-import res.model.BoardGamesDataService;
+import res.model.game.BoardGame;
+import res.model.game.BoardGamesDataService;
 
 public class BoardGamesResource {
 	

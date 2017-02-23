@@ -1,4 +1,4 @@
-package res.model;
+package res.model.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;

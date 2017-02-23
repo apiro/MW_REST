@@ -1,4 +1,4 @@
-package res.model;
+package res.model.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,5 +44,9 @@ public class BoardGamesDataService {
     
     public byte[] getImage(String id){
     	return bGames.getGameCovers().get(id);
+    }
+    
+    public boolean findId(String id){
+    	return bGames.getGames().containsKey(id);
     }
 }

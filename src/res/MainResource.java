@@ -24,7 +24,7 @@ public class MainResource {
 	
 	@Path("/plays/")
 	public PlaysResource getDiaries() {
-		return new PlaysResource();
+		return new PlaysResource(uriInfo);
 	}
 	
 	@GET

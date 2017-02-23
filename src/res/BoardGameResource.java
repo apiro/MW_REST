@@ -9,10 +9,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import res.model.UsersDataService;
-import res.model.BoardGame;
-import res.model.BoardGamesDataService;
-import res.model.User;
+import res.model.game.BoardGame;
+import res.model.game.BoardGamesDataService;
+import res.model.user.User;
+import res.model.user.UsersDataService;
 
 public class BoardGameResource {
 

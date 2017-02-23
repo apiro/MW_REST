@@ -1,4 +1,4 @@
-package res.model;
+package res.model.game;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class BoardGame {
 	@XmlAttribute(name="name", required=true)
 	private String name;
 	
-	//TODO JPG missing
+	@XmlAttribute(name="coverRef", required=false)
 	private String coverArt;
 	
 	public BoardGame() {

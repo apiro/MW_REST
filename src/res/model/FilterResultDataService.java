@@ -3,6 +3,8 @@ package res.model;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import res.model.user.UserFilterResult;
+
 public class FilterResultDataService {
 
 	private HashMap<String, UserFilterResult> activeResultsMap = new HashMap<String, UserFilterResult>();

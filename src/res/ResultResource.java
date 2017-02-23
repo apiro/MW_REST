@@ -7,8 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import res.model.UserFilterResult;
 import res.model.FilterResultDataService;
+import res.model.user.UserFilterResult;
 
 @Path("/api/query/filterResult/")
 public class ResultResource {
