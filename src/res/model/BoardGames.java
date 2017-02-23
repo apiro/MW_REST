@@ -17,6 +17,7 @@ public class BoardGames {
 
 	@XmlElement(name="Game", required=false)
 	private HashMap<String,BoardGame> boardGames = new HashMap<String,BoardGame>();
+	private HashMap<String,byte[]> gameCovers = new HashMap<String,byte[]>();
 
 	public HashMap<String,BoardGame> getGames() {
 		return boardGames;
@@ -24,6 +25,10 @@ public class BoardGames {
 
 	public void setGames(HashMap<String,BoardGame> games) {
 		this.boardGames = games;
+	}
+	
+	public HashMap<String,byte[]> getGameCovers() {
+		return gameCovers;
 	}
 
 	public HashMap<String, BoardGame> filterGames(HashMap<String, String> params) {
@@ -48,8 +53,6 @@ public class BoardGames {
 		
 		return games;
 	}
-	
-	
-	
+
 }
 

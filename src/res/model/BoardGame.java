@@ -24,6 +24,7 @@ public class BoardGame {
 	private String name;
 	
 	//TODO JPG missing
+	private String coverArt;
 	
 	public BoardGame() {
 	}
@@ -32,6 +33,7 @@ public class BoardGame {
 		super();
 		this.id = null;
 		this.name = name;
+		coverArt = null;
 		
 		String[] d = designers.split(",");
 		for(String s: d){
@@ -61,6 +63,14 @@ public class BoardGame {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCoverArt() {
+		return coverArt;
+	}
+
+	public void setCoverArt(String coverArt) {
+		this.coverArt = coverArt;
 	}
 
 }

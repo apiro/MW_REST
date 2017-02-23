@@ -13,11 +13,14 @@ http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/
 
 http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/  
         GET     list of all games
-        POST    create new game   -   name, designers(comma-separated list)
+        POST    create new game   -   name, designers(comma-separated list), image
 
 http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/{id}
         GET     view info game {id}
         DELETE  delete game {id}
+
+http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/{id}/cover
+		GET		download cover image of the game
 
 http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/search/
 		POST    return list of filtered users   -   name*, designers(comma-separated list)*, id*
