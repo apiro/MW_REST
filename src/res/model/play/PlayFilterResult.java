@@ -17,7 +17,6 @@ public class PlayFilterResult {
 	private List<Play>plays;
 	
 	public PlayFilterResult(){
-		
 	}
 	
 	public void setPlaysList(List<Play> plays) {

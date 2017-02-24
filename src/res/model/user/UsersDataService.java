@@ -1,6 +1,7 @@
 package res.model.user;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class UsersDataService {
 	
@@ -36,7 +37,7 @@ public class UsersDataService {
         return users.getUserMap().get(id);
     }
     
-    public HashMap<String, User> filter(HashMap<String, String> params) {
+    public List<User> filter(HashMap<String, String> params) {
         return users.filterUsers(params);
     }
     

@@ -17,9 +17,14 @@ public class BoardGamesDataService {
     public String addBoardGame(BoardGame boardGame, byte[] image, String uri) {
         String newId = Integer.toString(bGames.getGames().size() + 1);
         boardGame.setId(newId);
-        boardGame.setCoverArt(uri + newId + "/cover");
+        
+        if(image.length!=0){
+        	boardGame.setCoverArt(uri + newId + "/cover");
+            bGames.getGameCovers().put(newId, image);
+        }
+        
         bGames.getGames().put(newId,boardGame);
-        bGames.getGameCovers().put(newId, image);
+        
         return newId;
     }
 
@@ -38,7 +43,7 @@ public class BoardGamesDataService {
         return 1;
     }
     
-    public HashMap<String, BoardGame> filter(HashMap<String, String> params) {
+    public List<BoardGame> filter(HashMap<String, String> params) {
         return bGames.filterGames(params);
     }
     

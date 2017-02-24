@@ -86,9 +86,7 @@ public class BoardGamesResource {
 		
 		System.out.println(game.getName());
 		String uriString = uriInfo.getAbsolutePath().toString() + id;
-		URI uri = URI.create(uriString);
 
-        //return Response.created(uri).build();
 		return Response.ok(uriString).build();
     }
 }

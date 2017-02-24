@@ -31,9 +31,9 @@ public class BoardGames {
 		return gameCovers;
 	}
 
-	public HashMap<String, BoardGame> filterGames(HashMap<String, String> params) {
+	public List<BoardGame> filterGames(HashMap<String, String> params) {
 		
-		HashMap<String, BoardGame> games = new HashMap<String, BoardGame>();
+		List<BoardGame> games = new ArrayList<BoardGame>();
 
 		String name = params.get("name") != null ? params.get("name") : "";
 		String id = params.get("id") != null ? params.get("id") : "";
@@ -47,7 +47,7 @@ public class BoardGames {
 			if((name.trim().length() == 0 || name.equals(g.getName())) && 
 				((id.trim().length() == 0 || id.equals(g.getId()))) && 
 				((designers.trim().length() == 0 || g.getDesigners().containsAll(des)))){
-				games.put(g.getId(), g);				
+				games.add(g);				
 			}
 		}
 		

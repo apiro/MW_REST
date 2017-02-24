@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -28,46 +29,35 @@ public class UsersFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
-	private static FilterResultDataService dataServiceResults = new FilterResultDataService();
-	
 	public UsersFilterResource(UriInfo uriInfo) {
 		this.uriInfo = uriInfo;
 	}
 	
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces("application/json")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
 		System.out.println("> POST /users/filter");
 		
 		setFilters(formParams);
 
-		HashMap<String, User> results = dataService.filter(params);
+		List<User> results = dataService.filter(params);
 		
 		if(results.isEmpty()) {
 			return Response.status(Response.Status.NOT_FOUND).entity(new User()).build();
 		}
 	
 		UserFilterResult filterResults = new UserFilterResult();
-		filterResults.setUserList(new ArrayList<User>(results.values()));
+		filterResults.setUserList(results);
 
-		String idResult = dataServiceResults.addFilterResult(filterResults);
-		
-		//java.net.URI location = new java.net.URI("http://localhost:8080/BroadGamesREST/jaxrs/api/query/filterResult/" + idResult.toString());
-		//System.out.println("> location: " + location);
-		
-		Iterator<User> it = dataServiceResults.getFilterResult(idResult).getUsers().iterator();
+		Iterator<User> it = results.iterator();
 		
 		while(it.hasNext()) {
 			System.out.println("> entry selected: " + it.next());
 		}
 		
-		//List<User> list = new ArrayList<User>(dataServiceResults.getFilterResult(idResult).getUserMap().values());
-		UserFilterResult res = dataServiceResults.getFilterResult(idResult);
-		return Response.ok(res).build();
-		//return Response.ok().entity(new GenericEntity<List<User>>(list) {}).build();
-				//temporaryRedirect(location).build();
+		return Response.ok(filterResults).build();
 	}
 	
 	public void setFilters(MultivaluedMap<String, String> formParams){

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>User Page</title>
+</head>
+<body>
+<h1>Create User</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users" method="post" enctype="application/x-www-form-urlencoded">
+
+	   <p>
+		Select a name* : <input type="text" name="name" />
+	   </p>
+	   
+	   <p>
+		Select a address : <input type="text" name="address" />
+	   </p>
+	   
+	   <p>
+		Select a phoneNumber: <input type="text" name="phoneNumber" />
+	   </p>
+	   
+	   <input type="submit" value="Create User" />
+	</form>
+
+<h1>Search User</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/" method="post" enctype="application/x-www-form-urlencoded">
+
+		<p>
+		Select a id : <input type="text" name="id" />
+	   </p>
+		
+	   <p>
+		Select a name : <input type="text" name="name" />
+	   </p>
+	   
+	   <p>
+		Select a address : <input type="text" name="address" />
+	   </p>
+	   
+	   <p>
+		Select a phoneNumber: <input type="text" name="phoneNumber" />
+	   </p>
+	   
+	   <input type="submit" value="Search" />
+	</form>
+	
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users" method="get">
+	   <input type="submit" value="List All" />
+	</form>
+
+</body>
+</html>

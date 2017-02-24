@@ -32,7 +32,7 @@ public class UserResource {
 			return Response.status(Response.Status.NOT_FOUND).entity("User not found").build();
 		}
 		
-        return Response.ok(user, MediaType.APPLICATION_JSON).build();
+        return Response.ok(user, MediaType.APPLICATION_XML).build();
     }
 	
 	@DELETE

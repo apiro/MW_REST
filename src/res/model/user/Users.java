@@ -1,6 +1,8 @@
 package res.model.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,9 +43,9 @@ public class Users {
 		this.userMap = userMap;
 	}
 	
-	public HashMap<String, User> filterUsers(HashMap<String, String> params) {
+	public List<User> filterUsers(HashMap<String, String> params) {
 		
-		HashMap<String, User> users = new HashMap<String, User>();
+		List<User> users = new ArrayList<User>();
 
 		String name = params.get("name") != null ? params.get("name") : "";
 		String address = params.get("address") != null ? params.get("address") : "";
@@ -55,7 +57,7 @@ public class Users {
 				(address.trim().length() == 0 || address.equals(u.getAddress())) && 
 				(phoneNumber.trim().length() == 0 || phoneNumber.equals(u.getPhoneNumber())) && 
 				(id.trim().length() == 0 || id.equals(u.getId()))) {
-				users.put(u.getId(), u);
+				users.add(u);
 			}
 		}
 		return users;

@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -32,26 +33,26 @@ public class BoardGamesFilterResource {
 	
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces("application/json")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
 		System.out.println("> POST /boardGames/filter");
 		
 		setFilters(formParams);
 
-		HashMap<String, BoardGame> results = dataService.filter(params);
+		List<BoardGame> results = dataService.filter(params);
 		
 		if(results.isEmpty()) {
 			return Response.status(Response.Status.NOT_FOUND).entity(new BoardGame()).build();
 		}
 		
-		Iterator<BoardGame> it = results.values().iterator();
+		Iterator<BoardGame> it = results.iterator();
 		while(it.hasNext()) {
 			System.out.println("> entry selected: " + it.next());
 		}
 		
 		BoardGamesFilterResult res = new BoardGamesFilterResult();
-		res.setGamesList(new ArrayList<BoardGame>(results.values()));
+		res.setGamesList(new ArrayList<BoardGame>(results));
 		return Response.ok(res).build();
 	}
 	

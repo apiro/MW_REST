@@ -35,7 +35,7 @@ public class BoardGameResource {
 			return Response.status(Response.Status.NOT_FOUND).entity("Game not found").build();
 		}
 		
-        return Response.ok(game, MediaType.APPLICATION_JSON).build();
+        return Response.ok(game, MediaType.APPLICATION_XML).build();
     }
 	
 	@DELETE

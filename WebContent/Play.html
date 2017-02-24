@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Form Page</title>
+<title>Play Page</title>
 </head>
 <body>
 <h1>Create Play</h1>
@@ -33,8 +33,26 @@
 		Insert winner id : <input type="text" name="winnerId" />
 	   </p>
 
-	   <input type="submit" value="Upload It" />
+	   <input type="submit" value="Create" />
 	</form>
+	
+<h1>Search Play</h1>
 
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/plays/search/" method="post" enctype="application/x-www-form-urlencoded">
+	   <p>
+		Select a userId* : <input type="text" name="userId" />
+	   </p>
+	   
+	   <p>
+		Select a gameId : <input type="text" name="gameId" />
+	   </p>
+	   
+	   <p>
+		Select a date (format dd/MM/yy): <input type="text" name="date" />
+	   </p>
+	   
+	   <input type="submit" value="Search" />
+	</form>
+	
 </body>
 </html>

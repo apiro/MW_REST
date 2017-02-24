@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -17,12 +18,15 @@ import javax.ws.rs.core.UriInfo;
 import res.model.game.BoardGame;
 import res.model.game.BoardGamesDataService;
 import res.model.game.BoardGamesFilterResult;
+import res.model.play.Play;
+import res.model.play.PlayDataService;
+import res.model.play.PlayFilterResult;
 
 public class PlaysFilterResource {
 
 	@Context UriInfo uriInfo;
 	
-	private BoardGamesDataService dataService = BoardGamesDataService.getInstance();
+	private PlayDataService dataService = PlayDataService.getInstance();
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
@@ -32,26 +36,26 @@ public class PlaysFilterResource {
 	
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces("application/json")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
-		System.out.println("> POST /boardGames/filter");
+		System.out.println("> POST /plays/filter");
 		
 		setFilters(formParams);
 
-		HashMap<String, BoardGame> results = dataService.filter(params);
+		List<Play> results = dataService.filter(params);
 		
 		if(results.isEmpty()) {
-			return Response.status(Response.Status.NOT_FOUND).entity(new BoardGame()).build();
+			return Response.status(Response.Status.NOT_FOUND).entity(new Play()).build();
 		}
 		
-		Iterator<BoardGame> it = results.values().iterator();
+		Iterator<Play> it = results.iterator();
 		while(it.hasNext()) {
 			System.out.println("> entry selected: " + it.next());
 		}
 		
-		BoardGamesFilterResult res = new BoardGamesFilterResult();
-		res.setGamesList(new ArrayList<BoardGame>(results.values()));
+		PlayFilterResult res = new PlayFilterResult();
+		res.setPlaysList(results);
 		return Response.ok(res).build();
 	}
 	

@@ -45,6 +45,11 @@ public class PlaysResource {
         return Response.ok().entity(new GenericEntity<List<Play>>(list) {}).build();
 	}
 	
+	@Path("/search/")
+	public PlaysFilterResource getRes() {
+		return new PlaysFilterResource(uriInfo);
+	}
+	
 	@POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
