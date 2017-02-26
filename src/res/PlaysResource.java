@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import res.model.Link;
 import res.model.game.BoardGamesDataService;
 import res.model.play.Play;
 import res.model.play.PlayDataService;
@@ -94,6 +95,16 @@ public class PlaysResource {
 			play.setWinnerId(winnerId.trim());
 		}
 		
+		Link link_player = new Link();
+		Link link_game = new Link();
+		link_player.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/" + play.getUserId());
+		link_player.setRel("player");
+		link_game.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + play.getGameId());
+		link_game.setRel("game");
+		
+		play.addLink(link_game);
+		play.addLink(link_player);
+
 		dataService.addPlay(play);		
 
         return Response.ok("Play created").build();

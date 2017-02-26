@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import res.model.Link;
 import res.model.user.User;
 import res.model.user.UsersDataService;
 
@@ -67,8 +68,19 @@ public class UsersResource {
 		
 		System.out.println(user.toString());
 		String uriString = uriInfo.getAbsolutePath().toString() + "/" + user.getId();
+		
+		Link link_self = new Link();
+		link_self.setHref(uriString);
+		link_self.setRel("self");
+		
+		Link link_plays = new Link();
+		link_plays.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/plays/" + user.getId());
+		link_plays.setRel("plays");
+		
+		user.addLink(link_self);
+		user.addLink(link_plays);
 		URI uri = URI.create(uriString);
 
-        return Response.ok(uriString).build();
-    }
+        return Response.seeOther(uri).build();
+	}
 }

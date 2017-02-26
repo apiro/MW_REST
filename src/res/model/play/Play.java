@@ -5,8 +5,12 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import res.model.Link;
+import res.model.Links;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,11 +33,23 @@ public class Play {
 	@XmlAttribute(name="winnerId", required=true)
 	private String winnerId;
 	
+	@XmlElement(name="links", required=false)
+	private Links links;
+	
+	public void setLinks(Links links) {
+		this.links = links;
+	}
+	
+	public void addLink(Link link) {
+		links.addLink(link);
+	}
+	
 	public Play() {
 	}
 	
 	public Play(String userId, String gameId, Date date) {
 		super();
+		this.setLinks(new Links());
 		this.userId = userId;
 		this.gameId = gameId;
 		this.date = date;

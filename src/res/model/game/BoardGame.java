@@ -9,6 +9,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import res.model.Link;
+import res.model.Links;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="BoardGameType")
@@ -26,6 +29,13 @@ public class BoardGame {
 	@XmlAttribute(name="coverRef", required=false)
 	private String coverArt;
 	
+	@XmlElement(name="links", required=false)
+	private Links links;
+	
+	public void setLinks(Links links) {
+		this.links = links;
+	}
+
 	public BoardGame() {
 	}
 	
@@ -34,11 +44,16 @@ public class BoardGame {
 		this.id = null;
 		this.name = name;
 		coverArt = null;
+		setLinks(new Links());
 		
 		String[] d = designers.split(",");
 		for(String s: d){
 			this.designers.add(s.trim());
 		}
+	}
+	
+	public void addLink(Link link) {
+		links.addLink(link);
 	}
 	
 	public ArrayList<String> getDesigners() {

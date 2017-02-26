@@ -1,7 +1,6 @@
 package res;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import res.model.FilterResultDataService;
 import res.model.user.User;
 import res.model.user.UserFilterResult;
 import res.model.user.UsersDataService;

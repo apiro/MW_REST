@@ -3,8 +3,12 @@ package res.model.user;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import res.model.Link;
+import res.model.Links;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,17 +23,26 @@ public class User {
     private String address; 
 	@XmlAttribute(name="phoneNumber", required=true)
     private String phoneNumber; 
- 
-    public User() { 
-    	
-    } 
+	@XmlElement(name="links", required=false)
+	private Links links;
+	
+	public User() {}
 	
 	public User(String name, String address, String phoneNumber) {
+		setLinks(new Links());
 		setName(name);
 		setAddress(address);
 		setPhoneNumber(phoneNumber);
 	}
 
+	public void setLinks(Links links) {
+		this.links = links;
+	}
+
+	public void addLink(Link link) {
+		links.addLink(link);
+	}
+	
 	public String getId() {
 		return id;
 	}

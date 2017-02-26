@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriInfo;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
+import res.model.Link;
 import res.model.game.BoardGame;
 import res.model.game.BoardGamesDataService;
 
@@ -80,13 +81,19 @@ public class BoardGamesResource {
 			e.printStackTrace();
 		}
 		
-		
 		BoardGame game = new BoardGame(name, designers);
 		String id = dataService.addBoardGame(game, buffer.toByteArray(), uriInfo.getAbsolutePath().toString());
 		
 		System.out.println(game.getName());
 		String uriString = uriInfo.getAbsolutePath().toString() + id;
+		
+		Link link_self = new Link();
+		link_self.setHref(uriString);
+		link_self.setRel("self");
+		game.addLink(link_self);
+		
+		URI uri = URI.create(uriString);
 
-		return Response.ok(uriString).build();
+		return Response.seeOther(uri).build();
     }
 }
