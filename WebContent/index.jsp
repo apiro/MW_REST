@@ -8,6 +8,9 @@
     	<title>GlassFish JSP Page</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
+     
+    <a href="./User.html">Users</a> </br>
+    <a href="./Game.html">Games</a> </br>
+     <a href="./Play.html">Plays</a> </br>
   </body>
 </html> 
