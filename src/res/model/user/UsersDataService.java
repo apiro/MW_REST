@@ -1,5 +1,8 @@
 package res.model.user;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,7 +40,37 @@ public class UsersDataService {
         return users.getUserMap().get(id);
     }
     
-    public List<User> filter(HashMap<String, String> params) {
+    public List<User> filter(HashMap<String, String> params, final String orderAttribute, final boolean descending) {
+    	
+    	List<User> filteredUsersList = users.filterUsers(params);
+    	for(User u:filteredUsersList) {
+    		System.out.println("> " + u.toString());
+    	}
+    	
+    	Collections.sort(filteredUsersList, new Comparator<User>() {
+    	
+			@Override
+			public int compare(User o1, User o2) {
+				System.out.println(orderAttribute);
+				System.out.println(descending);
+				String value1 = o1.getAttribute(orderAttribute);
+				String value2 = o2.getAttribute(orderAttribute);
+				int value = value1.compareToIgnoreCase(value2);
+				if(descending == true) {
+					
+				} else {
+					
+				}
+				
+				return 0;
+			}
+
+        });
+    	
+    	for(User u:filteredUsersList) {
+    		System.out.println("> " + u.toString());
+    	}	
+    	
         return users.filterUsers(params);
     }
     

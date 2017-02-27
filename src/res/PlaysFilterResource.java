@@ -1,7 +1,6 @@
 package res;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,9 +14,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import res.model.game.BoardGame;
-import res.model.game.BoardGamesDataService;
-import res.model.game.BoardGamesFilterResult;
 import res.model.play.Play;
 import res.model.play.PlayDataService;
 import res.model.play.PlayFilterResult;

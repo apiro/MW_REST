@@ -27,6 +27,10 @@ public class UsersFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
+	private boolean descending;
+	
+	private String orderAttribute;
+	
 	public UsersFilterResource(UriInfo uriInfo) {
 		this.uriInfo = uriInfo;
 	}
@@ -40,7 +44,7 @@ public class UsersFilterResource {
 		
 		setFilters(formParams);
 
-		List<User> results = dataService.filter(params);
+		List<User> results = dataService.filter(params, orderAttribute, descending);
 		
 		if(results.isEmpty()) {
 			return Response.status(Response.Status.NOT_FOUND).entity(new User()).build();
@@ -64,7 +68,13 @@ public class UsersFilterResource {
 		
 		while(it.hasNext()) {
 			String theKey = (String)it.next();
-			params.put(theKey, formParams.getFirst(theKey));
+			if(theKey.equals("sort")) {
+				orderAttribute = formParams.getFirst("sort");
+			} else if (theKey.equals("descending")) {
+				descending = Boolean.getBoolean(formParams.getFirst(theKey));
+			}{
+				params.put(theKey, formParams.getFirst(theKey));
+			}
 		}	
 	}
 }

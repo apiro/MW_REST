@@ -80,4 +80,16 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
 	}
 	
+	public String getAttribute(String attr) {
+		if(attr.equals("id")){
+			return this.getId();
+		} else if (attr.equals("address")) {
+			return this.getAddress();
+		} else if (attr.equals("name")) {
+			return this.getName();
+		} else if (attr.equals("phoneNumber")) {
+			return this.getPhoneNumber();
+		}
+		return "null";
+	}
 }
