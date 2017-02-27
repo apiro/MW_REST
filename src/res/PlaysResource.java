@@ -107,7 +107,7 @@ public class PlaysResource {
 
 		dataService.addPlay(play);		
 
-        return Response.ok("Play created").build();
+        return Response.ok(play, MediaType.APPLICATION_XML).build();
     }
 	
 }
