@@ -85,10 +85,10 @@ public class UsersDataService {
 				
 				// comparedResult is negative if o1 attribute precedes o2 attribute
 				
-				if(descending == true) {
-					return comparedResult;
-				} else {
+				if(descending) {
 					return -comparedResult;
+				} else {
+					return comparedResult;
 				}
 			}
         });
