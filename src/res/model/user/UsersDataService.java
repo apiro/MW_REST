@@ -1,10 +1,11 @@
 package res.model.user;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+
+import res.model.Link;
 
 public class UsersDataService {
 	
@@ -27,6 +28,18 @@ public class UsersDataService {
     public String addUser(User user) {
         String newId = Integer.toString(users.getUserMap().size() + 1);
         user.setId(newId);
+        
+        Link link_self = new Link();
+		link_self.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + user.getId());
+		link_self.setRel("self");
+		
+		Link link_plays = new Link();
+		link_plays.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/plays/" + user.getId());
+		link_plays.setRel("plays");
+		
+		user.addLink(link_self);
+		user.addLink(link_plays);
+        
         users.getUserMap().put(newId, user);
         return newId;
     }
@@ -41,38 +54,38 @@ public class UsersDataService {
     }
     
     public List<User> filter(HashMap<String, String> params, final String orderAttribute, final boolean descending) {
-    	
-    	List<User> filteredUsersList = users.filterUsers(params);
-    	for(User u:filteredUsersList) {
-    		System.out.println("> " + u.toString());
+
+    	if(orderAttribute == null) {
+    		//no ordering is needed
+    		return users.filterUsers(params);
     	}
     	
-    	Collections.sort(filteredUsersList, new Comparator<User>() {
+    	List<User> filteredUsersList = users.filterUsers(params);
+    	
+    	orderOneField(orderAttribute, descending, filteredUsersList);
+    	
+        return filteredUsersList;
+    }
+
+	private void orderOneField(final String orderAttribute, final boolean descending, List<User> filteredUsersList) {
+		
+		Collections.sort(filteredUsersList, new Comparator<User>() {
     	
 			@Override
 			public int compare(User o1, User o2) {
-				System.out.println(orderAttribute);
-				System.out.println(descending);
-				String value1 = o1.getAttribute(orderAttribute);
-				String value2 = o2.getAttribute(orderAttribute);
-				int value = value1.compareToIgnoreCase(value2);
-				if(descending == true) {
-					
-				} else {
-					
-				}
 				
-				return 0;
+				int comparedResult = 
+						o1.getAttribute(orderAttribute).compareToIgnoreCase(o2.getAttribute(orderAttribute));
+				// comparedResult is negative if o1 attribute precedes o2 attribute
+				
+				if(descending == true) {
+					return comparedResult;
+				} else {
+					return -comparedResult;
+				}
 			}
-
         });
-    	
-    	for(User u:filteredUsersList) {
-    		System.out.println("> " + u.toString());
-    	}	
-    	
-        return users.filterUsers(params);
-    }
+	}
     
     public boolean findId(String id){
     	return users.getUserMap().containsKey(id);

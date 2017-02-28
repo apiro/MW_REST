@@ -14,7 +14,7 @@
 	   </p>
 	   
 	   <p>
-		Select a address : <input type="text" name="address" />
+		Select an address : <input type="text" name="address" />
 	   </p>
 	   
 	   <p>
@@ -29,7 +29,7 @@
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/" method="post" enctype="application/x-www-form-urlencoded">
 
 		<p>
-		Select a id : <input type="text" name="id" />
+		Select an id : <input type="text" name="id" />
 	   </p>
 		
 	   <p>
@@ -37,11 +37,26 @@
 	   </p>
 	   
 	   <p>
-		Select a address : <input type="text" name="address" />
+		Select an address : <input type="text" name="address" />
 	   </p>
 	   
 	   <p>
 		Select a phoneNumber: <input type="text" name="phoneNumber" />
+	   </p>
+	   
+	   <p>
+	   	Select an order attribute: <br>
+	   	<input type="radio" name="orderAttribute" value="null" checked>No ordering<br>
+	   	<input type="radio" name="orderAttribute" value="name">Name<br>
+	   	<input type="radio" name="orderAttribute" value="phoneNumber" >PhoneNumber<br>
+	   	<input type="radio" name="orderAttribute" value="address" >Address<br>
+	   	<input type="radio" name="orderAttribute" value="id" >Id<br>
+	   </p>
+	   
+	   <p>
+	   	Select an order organization: <br>
+	   	<input type="radio" name="descending" value="true" checked>Descending<br>
+	   	<input type="radio" name="descending" value="false" >Ascending<br>
 	   </p>
 	   
 	   <input type="submit" value="Search" />

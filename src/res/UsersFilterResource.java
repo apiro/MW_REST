@@ -27,7 +27,7 @@ public class UsersFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
-	private boolean descending;
+	private Boolean descending;
 	
 	private String orderAttribute;
 	
@@ -53,12 +53,6 @@ public class UsersFilterResource {
 		UserFilterResult filterResults = new UserFilterResult();
 		filterResults.setUserList(results);
 
-		Iterator<User> it = results.iterator();
-		
-		while(it.hasNext()) {
-			System.out.println("> entry selected: " + it.next());
-		}
-		
 		return Response.ok(filterResults).build();
 	}
 	
@@ -68,10 +62,10 @@ public class UsersFilterResource {
 		
 		while(it.hasNext()) {
 			String theKey = (String)it.next();
-			if(theKey.equals("sort")) {
-				orderAttribute = formParams.getFirst("sort");
+			if(theKey.equals("orderAttribute")) {
+				orderAttribute = formParams.getFirst("orderAttribute");
 			} else if (theKey.equals("descending")) {
-				descending = Boolean.getBoolean(formParams.getFirst(theKey));
+				descending = Boolean.valueOf(formParams.getFirst(theKey));
 			}{
 				params.put(theKey, formParams.getFirst(theKey));
 			}
