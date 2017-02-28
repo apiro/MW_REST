@@ -1,6 +1,6 @@
 # Project REST for the course Middleware Technologies for Distributed Systems, year 2016-17
 
-(Course Page)[http://corsi.dei.polimi.it/distsys/]
+[Course Page](http://corsi.dei.polimi.it/distsys/)
 
 The project has been deployed using glassfish 3.1.
 The API description can be found (here)[https://github.com/apiro/MW_REST/blob/master/API].
