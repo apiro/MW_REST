@@ -3,7 +3,7 @@
 [Course Page](http://corsi.dei.polimi.it/distsys/)
 
 The project has been deployed using glassfish 3.1.
-The API description can be found (here)[https://github.com/apiro/MW_REST/blob/master/API].
+The API description can be found [here](https://github.com/apiro/MW_REST/blob/master/API.md).
 
 ## Project description
 The goal of this project is to create a service that can help people keep track of their board games nights. The Board Game Manager should provide a REST API for:
