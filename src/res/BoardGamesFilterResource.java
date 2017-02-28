@@ -46,11 +46,6 @@ public class BoardGamesFilterResource {
 			return Response.status(Response.Status.NOT_FOUND).entity(new BoardGame()).build();
 		}
 		
-		Iterator<BoardGame> it = results.iterator();
-		while(it.hasNext()) {
-			System.out.println("> entry selected: " + it.next());
-		}
-		
 		BoardGamesFilterResult res = new BoardGamesFilterResult();
 		res.setGamesList(new ArrayList<BoardGame>(results));
 		return Response.ok(res).build();

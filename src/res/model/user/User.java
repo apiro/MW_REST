@@ -81,6 +81,7 @@ public class User {
 	}
 	
 	public String getAttribute(String attr) {
+		
 		if(attr.equals("id")){
 			return this.getId();
 		} else if (attr.equals("address")) {

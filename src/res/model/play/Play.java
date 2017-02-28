@@ -1,5 +1,7 @@
 package res.model.play;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -57,6 +59,17 @@ public class Play {
 		this.numPlayers = 1;
 		this.winnerId = null;
 	}
+	
+	public Play(String userId, String gameId, Date date, int numPlayers) {
+		super();
+		this.setLinks(new Links());
+		this.userId = userId;
+		this.gameId = gameId;
+		this.date = date;
+		this.time = null;
+		this.numPlayers = numPlayers;
+		this.winnerId = null;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -105,5 +118,23 @@ public class Play {
 	public void setWinnerId(String winnerId) {
 		this.winnerId = winnerId;
 	}
-	
+
+	public String getAttribute(String attr) {
+		
+		if (attr.equals("userId")) {
+			return this.getUserId();
+		} else if (attr.equals("gameId")) {
+			return this.getGameId();
+		} else if (attr.equals("date")) {
+			DateFormat format = new SimpleDateFormat("dd/MM/yy");
+			return format.format(this.getDate());
+		} else if (attr.equals("duration")) {
+			return this.getTime();
+		} else if (attr.equals("numPlayers")) {
+			return Integer.toString(this.getNumPlayers());
+		} else if (attr.equals("winnerId")) {
+			return this.getWinnerId();
+		}
+		return "null";
+	}
 }

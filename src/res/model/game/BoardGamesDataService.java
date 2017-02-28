@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import res.model.Link;
+
 public class BoardGamesDataService {
 	
 	private BoardGames bGames = new BoardGames();
@@ -13,15 +15,23 @@ public class BoardGamesDataService {
     public static BoardGamesDataService getInstance() {
         return ourInstance;
     }
-
+    
     public String addBoardGame(BoardGame boardGame, byte[] image, String uri) {
         String newId = Integer.toString(bGames.getGames().size() + 1);
         boardGame.setId(newId);
         
         if(image.length!=0){
-        	boardGame.setCoverArt(uri + newId + "/cover");
+        	Link link_cover = new Link();
+        	link_cover.setHref(uri + newId + "/cover");
+        	link_cover.setRel("cover");
+        	boardGame.addLink(link_cover);
             bGames.getGameCovers().put(newId, image);
         }
+        
+        Link link_self = new Link();
+		link_self.setHref(uri + boardGame.getId());
+		link_self.setRel("self");
+		boardGame.addLink(link_self);
         
         bGames.getGames().put(newId,boardGame);
         

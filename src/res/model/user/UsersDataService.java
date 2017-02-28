@@ -74,8 +74,15 @@ public class UsersDataService {
 			@Override
 			public int compare(User o1, User o2) {
 				
-				int comparedResult = 
-						o1.getAttribute(orderAttribute).compareToIgnoreCase(o2.getAttribute(orderAttribute));
+				int comparedResult;
+				if (orderAttribute.equals("id")) {
+					Integer int1 = Integer.decode(o1.getAttribute(orderAttribute));
+					Integer int2 = Integer.decode(o2.getAttribute(orderAttribute));
+					comparedResult = int1.compareTo(int2);
+				} else {
+					comparedResult = o1.getAttribute(orderAttribute).compareToIgnoreCase(o2.getAttribute(orderAttribute));
+				}
+				
 				// comparedResult is negative if o1 attribute precedes o2 attribute
 				
 				if(descending == true) {

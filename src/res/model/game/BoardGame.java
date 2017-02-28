@@ -25,10 +25,7 @@ public class BoardGame {
 	
 	@XmlAttribute(name="name", required=true)
 	private String name;
-	
-	@XmlAttribute(name="coverRef", required=false)
-	private String coverArt;
-	
+
 	@XmlElement(name="links", required=false)
 	private Links links;
 	
@@ -43,7 +40,6 @@ public class BoardGame {
 		super();
 		this.id = null;
 		this.name = name;
-		coverArt = null;
 		setLinks(new Links());
 		
 		String[] d = designers.split(",");
@@ -79,13 +75,4 @@ public class BoardGame {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getCoverArt() {
-		return coverArt;
-	}
-
-	public void setCoverArt(String coverArt) {
-		this.coverArt = coverArt;
-	}
-
 }

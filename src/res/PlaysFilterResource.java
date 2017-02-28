@@ -26,6 +26,10 @@ public class PlaysFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
+	private Boolean descending;
+	
+	private String orderAttribute;
+	
 	public PlaysFilterResource(UriInfo uriInfo) {
 		this.uriInfo = uriInfo;
 	}
@@ -39,20 +43,15 @@ public class PlaysFilterResource {
 		
 		setFilters(formParams);
 
-		List<Play> results = dataService.filter(params);
+		List<Play> results = dataService.filter(params, orderAttribute, descending);
 		
 		if(results.isEmpty()) {
 			return Response.status(Response.Status.NOT_FOUND).entity(new Play()).build();
 		}
 		
-		Iterator<Play> it = results.iterator();
-		while(it.hasNext()) {
-			System.out.println("> entry selected: " + it.next());
-		}
-		
-		PlayFilterResult res = new PlayFilterResult();
-		res.setPlaysList(results);
-		return Response.ok(res).build();
+		PlayFilterResult filterResults = new PlayFilterResult();
+		filterResults.setPlaysList(results);
+		return Response.ok(filterResults).build();
 	}
 	
 	public void setFilters(MultivaluedMap<String, String> formParams){
@@ -61,7 +60,13 @@ public class PlaysFilterResource {
 		
 		while(it.hasNext()) {
 			String theKey = (String)it.next();
-			params.put(theKey, formParams.getFirst(theKey));
+			if(theKey.equals("orderAttribute")) {
+				orderAttribute = formParams.getFirst("orderAttribute");
+			} else if (theKey.equals("descending")) {
+				descending = Boolean.valueOf(formParams.getFirst(theKey));
+			}{
+				params.put(theKey, formParams.getFirst(theKey));
+			}
 		}	
 	}
 }
