@@ -7,7 +7,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
 @Path("/api")
-@Produces("application/xml")
+@Produces("application/json")
 public class MainResource {
 
 	@Context UriInfo uriInfo;

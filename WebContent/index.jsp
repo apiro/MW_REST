@@ -6,11 +6,14 @@
   <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     	<title>GlassFish JSP Page</title>
+    	<link href="dist/css/bootstrap.css" rel="stylesheet" />
+		<link href="dist/css/bootstrap-theme.css" rel="stylesheet" />
   </head>
   <body>
      
-    <a href="./User.html">Users</a> </br>
-    <a href="./Game.html">Games</a> </br>
-     <a href="./Play.html">Plays</a> </br>
+     <a class="btn btn-primary" href="./User.html" role="button">Users</a>
+     <a class="btn btn-primary" href="./Game.html" role="button">Games</a>
+     <a class="btn btn-primary" href="./Play.html" role="button">Plays</a>
+
   </body>
 </html> 
