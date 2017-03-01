@@ -27,9 +27,9 @@
 ### Plays
 | Link | Method | Description | Parameters |
 | ------ | ------ | ------ | ------ |
-| http://localhost:8080/BroadGamesREST/jaxrs/api/plays/ | POST |	create play	|	userId* , gameId* , date* , token* , time, players, winnerId |
+| http://localhost:8080/BroadGamesREST/jaxrs/api/plays/ | POST ^ | create play	|	userId* , gameId* , date* , token* , time, players, winnerId |
 | http://localhost:8080/BroadGamesREST/jaxrs/api/plays/{userId} | GET	|	list of plays of the user {userId} ||
-| http://localhost:8080/BroadGamesREST/jaxrs/api/plays/search/ | POST ^ | return list of filtered and ordered plays | userId, gameId, date, orderAttribute ("userId", "gameId", "date", "numPlayers"), descending ("true", "false")|
+| http://localhost:8080/BroadGamesREST/jaxrs/api/plays/search/ | POST | return list of filtered and ordered plays | userId, gameId, date, orderAttribute ("userId", "gameId", "date", "numPlayers"), descending ("true", "false")|
 
 ### Authentication
 | Link | Method | Description | Parameters |
