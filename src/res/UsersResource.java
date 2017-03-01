@@ -67,8 +67,11 @@ public class UsersResource {
 		System.out.println("POST /users");
 		
 		User user = new User(name, address, phoneNumber);
+		String returnVal = dataService.addUser(user);
 		
-		dataService.addUser(user);
+		if(returnVal.equals("error")) {
+			return Response.status(Response.Status.CONFLICT).build();
+		}
 	
 		authDataService.addUserPassword(name, password);
 		

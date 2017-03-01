@@ -3,6 +3,7 @@ package res.model.user;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import res.model.Link;
@@ -26,20 +27,29 @@ public class UsersDataService {
     }
     
     public String addUser(User user) {
-        String newId = Integer.toString(users.getUserMap().size() + 1);
+    	
+    	Iterator<User> it = users.getUserMap().values().iterator();
+    	while(it.hasNext()) {
+    		String username = it.next().getName();
+    		if(username.equals(user.getName())) {
+    			return "error";
+    		}
+    	}
+
+    	String newId = Integer.toString(users.getUserMap().size() + 1);
         user.setId(newId);
-        
+            
         Link link_self = new Link();
-		link_self.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + user.getId());
-		link_self.setRel("self");
-		
-		Link link_plays = new Link();
-		link_plays.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/plays/" + user.getId());
-		link_plays.setRel("plays");
-		
-		user.addLink(link_self);
-		user.addLink(link_plays);
-        
+    	link_self.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + user.getId());
+    	link_self.setRel("self");
+    		
+    	Link link_plays = new Link();
+    	link_plays.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/plays/" + user.getId());
+    	link_plays.setRel("plays");
+    		
+    	user.addLink(link_self);
+    	user.addLink(link_plays);
+            
         users.getUserMap().put(newId, user);
         return newId;
     }
