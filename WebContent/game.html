@@ -37,7 +37,8 @@
 	   </p>
 	   
 	   <p>
-		Select a token : <input type="password" name="token"/>
+		Select a token : <input id="tokenField" type="text" name="token" /> 
+		<span style="color:red;">This field should be hidden. But for explanation reasons it is not</span>
 	   </p>
 	   
 	   <p>
@@ -46,6 +47,9 @@
 
 	   <input type="submit" value="Create" />
 	</form>
+	<script>
+		document.getElementById("tokenField").value = window.localStorage.getItem('token');
+	</script>
 	<br>
 </div>
 <br>

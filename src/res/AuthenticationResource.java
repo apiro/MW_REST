@@ -28,10 +28,11 @@ public class AuthenticationResource {
             String token = authDataService.addUserToken(username);
 
             String htmlToBeReturned = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">"
+            		+ "<script>window.localStorage.setItem('token', '" + token + "')</script>"
             		+ "<title>Power User Page</title>"
             		+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">"
             		+ "</head><body><h1 class=\"text-center\">Power User Personal Page</h1>"
-            		+ "<div class=\"container\" style=\"border:1px solid #cecece;\"><br><h3>Your Token</h3><p class=\"text-success\">" + token + "</p>"
+            		+ "<div class=\"container\" style=\"border:1px solid #cecece;\"><br><h3>Your Token</h3><p class=\"text-success\">" + token + "</p><p style='color:red'>No need to copy the token. It is saved in the local storage and automatically inserted in the forms</p>"
             		+ "<div class=\"container btn-toolbar\"><a class=\"btn btn-primary btn-sm\" href=\"http://localhost:8080/BroadGamesREST/game.html\" >Games</a><a class=\"btn btn-primary btn-sm\" href=\"http://localhost:8080/BroadGamesREST/play.html\" >Plays</a></div><br></div>"
             		+ "</body></html>";
             
