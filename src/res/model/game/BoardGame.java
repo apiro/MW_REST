@@ -75,4 +75,14 @@ public class BoardGame {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getAttribute(String attr) {
+		
+		if(attr.equals("id")){
+			return this.getId();
+		} else if (attr.equals("name")) {
+			return this.getName();
+		}
+		return "null";
+	}
 }

@@ -11,9 +11,9 @@
   </head>
   <body>
      
-     <a class="btn btn-primary" href="./User.html" role="button">Users</a>
-     <a class="btn btn-primary" href="./Game.html" role="button">Games</a>
-     <a class="btn btn-primary" href="./Play.html" role="button">Plays</a>
+     <a class="btn btn-primary" href="./User.html" >Users</a>
+     <a class="btn btn-primary" href="./Game.html" >Games</a>
+     <a class="btn btn-primary" href="./Play.html" >Plays</a>
 
   </body>
 </html> 

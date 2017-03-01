@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Play Page</title>
+</head>
+<body>
+<h1>Create Play</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/plays/" method="post" enctype="application/x-www-form-urlencoded">
+
+	   <p>
+		Select a userId* : <input type="text" name="userId" />
+	   </p>
+	   
+	   <p>
+		Select a gameId* : <input type="text" name="gameId" />
+	   </p>
+	   
+	   <p>
+		Select a token* : <input type="password" name="token" />
+	   </p>
+	   
+	   <p>
+		Select a date* (format dd/MM/yy): <input type="text" name="date" />
+	   </p>
+	   
+	   <p>
+		Insert duration time (format HH:mm): <input type="text" name="time" />
+	   </p>	  
+	   
+	   <p>
+		Insert number of players : <input type="text" name="players" />
+	   </p> 
+	   
+	   <p>
+		Insert winner id : <input type="text" name="winnerId" />
+	   </p>
+
+	   <input type="submit" value="Create" />
+	</form>
+	
+</body>
+</html>

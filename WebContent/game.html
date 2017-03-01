@@ -18,34 +18,15 @@
 	   </p>
 	   
 	   <p>
+		Token : <input type="password" name="token"/>
+	   </p>
+	   
+	   <p>
 	   	Designers (comma separated list) : <input type="text" name="designers"/>
 	   </p>
 
 	   <input type="submit" value="Create" />
 	</form>
-
-<h1>Search Board Game</h1>
-
-	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/search/" method="post" enctype="application/x-www-form-urlencoded">
-
-	   <p>
-		Id : <input type="text" name="id"/>
-	   </p>
-	   
-	   <p>
-		Name : <input type="text" name="name"/>
-	   </p>
-	   
-	   <p>
-	   	Designers (comma separated list) : <input type="text" name="designers"/>
-	   </p>
-
-	   <input type="submit" value="Search" />
-	</form>
-
-	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames" method="get">
-	   <input type="submit" value="List All" />
-	</form>
-
+	
 </body>
 </html>

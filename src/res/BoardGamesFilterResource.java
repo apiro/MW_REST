@@ -27,6 +27,10 @@ public class BoardGamesFilterResource {
 	
 	private HashMap<String, String> params = new HashMap<String, String>();
 	
+	private Boolean descending;
+	
+	private String orderAttribute;
+	
 	public BoardGamesFilterResource(UriInfo uriInfo) {
 		this.uriInfo = uriInfo;
 	}
@@ -40,15 +44,15 @@ public class BoardGamesFilterResource {
 		
 		setFilters(formParams);
 
-		List<BoardGame> results = dataService.filter(params);
+		List<BoardGame> results = dataService.filter(params, orderAttribute, descending);
 		
 		if(results.isEmpty()) {
 			return Response.status(Response.Status.NOT_FOUND).entity(new BoardGame()).build();
 		}
 		
-		BoardGamesFilterResult res = new BoardGamesFilterResult();
-		res.setGamesList(new ArrayList<BoardGame>(results));
-		return Response.ok(res).build();
+		BoardGamesFilterResult filterResult = new BoardGamesFilterResult();
+		filterResult.setGamesList(new ArrayList<BoardGame>(results));
+		return Response.ok(filterResult).build();
 	}
 	
 	public void setFilters(MultivaluedMap<String, String> formParams){
@@ -57,7 +61,13 @@ public class BoardGamesFilterResource {
 		
 		while(it.hasNext()) {
 			String theKey = (String)it.next();
-			params.put(theKey, formParams.getFirst(theKey));
+			if(theKey.equals("orderAttribute")) {
+				orderAttribute = formParams.getFirst("orderAttribute");
+			} else if (theKey.equals("descending")) {
+				descending = Boolean.valueOf(formParams.getFirst(theKey));
+			}{
+				params.put(theKey, formParams.getFirst(theKey));
+			}
 		}	
 	}
 }

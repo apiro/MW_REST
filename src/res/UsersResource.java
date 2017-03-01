@@ -17,12 +17,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import res.auth.AuthenticationDataService;
 import res.model.user.User;
 import res.model.user.UsersDataService;
 
 public class UsersResource {
 	
 	private UsersDataService dataService = UsersDataService.getInstance();
+	private AuthenticationDataService authDataService = AuthenticationDataService.getInstance();
+	
 	@Context UriInfo uriInfo;
 	
 	public UsersResource(UriInfo uriInfo){
@@ -31,13 +34,13 @@ public class UsersResource {
 	
 	@Path("/{id}")
 	public UserResource getUserResource(@PathParam("id") String id) {
+		
 		return new UserResource(id);
 	}
 	
 	@Path("/search/")
 	public UsersFilterResource getRes() {
-		System.out.println("ciao");
-		
+
 		return new UsersFilterResource(uriInfo);
 	}
 
@@ -55,15 +58,19 @@ public class UsersResource {
 	@POST
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createCustomer(
+    public Response createUser(
     		@FormParam("name") String name,
     		@FormParam("address") String address,
-    		@FormParam("phoneNumber") String phoneNumber) {
+    		@FormParam("phoneNumber") String phoneNumber,
+    		@FormParam("password") String password) {
 		
 		System.out.println("POST /users");
 		
 		User user = new User(name, address, phoneNumber);
+		
 		dataService.addUser(user);
+	
+		authDataService.addUserPassword(name, password);
 		
 		System.out.println(user.toString());
 		String uriString = uriInfo.getAbsolutePath().toString() + "/" + user.getId();

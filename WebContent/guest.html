@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Guest Page</title>
+</head>
+<body>
+<h1>Search User</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/" method="post" enctype="application/x-www-form-urlencoded">
+
+		<p>
+		Select an id : <input type="text" name="id" />
+	   </p>
+		
+	   <p>
+		Select a name : <input type="text" name="name" />
+	   </p>
+	   
+	   <p>
+		Select an address : <input type="text" name="address" />
+	   </p>
+	   
+	   <p>
+		Select a phoneNumber: <input type="text" name="phoneNumber" />
+	   </p>
+	   
+	   <p>
+	   	Select an order attribute: <br>
+	   	<input type="radio" name="orderAttribute" value="null" checked>No ordering<br>
+	   	<input type="radio" name="orderAttribute" value="name">Name<br>
+	   	<input type="radio" name="orderAttribute" value="phoneNumber" >PhoneNumber<br>
+	   	<input type="radio" name="orderAttribute" value="address" >Address<br>
+	   	<input type="radio" name="orderAttribute" value="id" >Id<br>
+	   </p>
+	   
+	   <p>
+	   	Select an order organization: <br>
+	   	<input type="radio" name="descending" value="true" checked>Descending<br>
+	   	<input type="radio" name="descending" value="false" >Ascending<br>
+	   </p>
+	   
+	   <input type="submit" value="Search" />
+	</form>
+	
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users" method="get">
+	   <input type="submit" value="List All" />
+	</form>
+	
+	
+<h1>Search Board Game</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/search/" method="post" enctype="application/x-www-form-urlencoded">
+
+	   <p>
+		Id : <input type="text" name="id"/>
+	   </p>
+	   
+	   <p>
+		Name : <input type="text" name="name"/>
+	   </p>
+	   
+	   <p>
+	   	Designers (comma separated list) : <input type="text" name="designers"/>
+	   </p>
+	   
+	   <p>
+	   	Select an order attribute: <br>
+	   	<input type="radio" name="orderAttribute" value="null" checked>No ordering<br>
+	   	<input type="radio" name="orderAttribute" value="id">Game Id<br>
+	   	<input type="radio" name="orderAttribute" value="name" >Name<br>
+	   </p>
+	   
+	   <p>
+	   	Select an order organization: <br>
+	   	<input type="radio" name="descending" value="true" checked>Descending<br>
+	   	<input type="radio" name="descending" value="false" >Ascending<br>
+	   </p>
+
+	   <input type="submit" value="Search" />
+	</form>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames" method="get">
+	   <input type="submit" value="List All" />
+	</form>
+	
+<h1>Search Play</h1>
+
+	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/plays/search/" method="post" enctype="application/x-www-form-urlencoded">
+	   <p>
+		Select a userId* : <input type="text" name="userId" />
+	   </p>
+	   
+	   <p>
+		Select a gameId : <input type="text" name="gameId" />
+	   </p>
+	   
+	   <p>
+		Select a date (format dd/MM/yy): <input type="text" name="date" />
+	   </p>
+	   
+	   
+	   <p>
+	   	Select an order attribute: <br>
+	   	<input type="radio" name="orderAttribute" value="null" checked>No ordering<br>
+	   	<input type="radio" name="orderAttribute" value="userId">User Id<br>
+	   	<input type="radio" name="orderAttribute" value="gameId" >Game Id<br>
+	   	<input type="radio" name="orderAttribute" value="date" >Date<br>
+	   	<input type="radio" name="orderAttribute" value="numPlayers" >Number of Players<br>
+	   </p>
+	   
+	   <p>
+	   	Select an order organization: <br>
+	   	<input type="radio" name="descending" value="true" checked>Descending<br>
+	   	<input type="radio" name="descending" value="false" >Ascending<br>
+	   </p>
+	   
+	   <input type="submit" value="Search" />
+	</form>
+	
+</body>
+</html>

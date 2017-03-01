@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="FilterResult")
 public class PlayFilterResult {
 
-	@XmlElement(name="Plays", required=false)
+	@XmlElement(name="Play", required=false)
 	private List<Play>plays;
 	
 	public PlayFilterResult(){

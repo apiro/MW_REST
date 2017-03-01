@@ -21,12 +21,15 @@ import javax.ws.rs.core.UriInfo;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
 
+import res.auth.AuthenticationDataService;
 import res.model.game.BoardGame;
 import res.model.game.BoardGamesDataService;
 
 public class BoardGamesResource {
 	
 	private BoardGamesDataService dataService = BoardGamesDataService.getInstance();
+	private AuthenticationDataService authDataService = AuthenticationDataService.getInstance();
+	
 	@Context UriInfo uriInfo;
 	
 	public BoardGamesResource(UriInfo uriInfo){
@@ -59,34 +62,43 @@ public class BoardGamesResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createBoardGame(
     		@FormDataParam("name") String name,
+    		@FormDataParam("token") String token,
     		@FormDataParam("designers") String designers,
     		@FormDataParam("file") InputStream fileStream, 
 			@FormDataParam("file") FormDataContentDisposition fileDisposition){
 		
 		System.out.println("POST /users");
 		
-		//Get image file from POST request
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		byte[] actualDataToStore = new byte[16384];
-		int nBytesRead;
-		
-		try {
-			while ((nBytesRead = fileStream.read(actualDataToStore, 0, actualDataToStore.length)) != -1) {
-				buffer.write(actualDataToStore, 0, nBytesRead);
-			}
-			buffer.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		BoardGame game = new BoardGame(name, designers);
-		String id = dataService.addBoardGame(game, buffer.toByteArray(), uriInfo.getAbsolutePath().toString());
-		
-		String uriString = uriInfo.getAbsolutePath().toString() + id;
-		
-		URI uri = URI.create(uriString);
+		if(authDataService.isTokenValid(token)) {
 
-		return Response.seeOther(uri).build();
+			//Get image file from POST request
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			byte[] actualDataToStore = new byte[16384];
+			int nBytesRead;
+			
+			try {
+				while ((nBytesRead = fileStream.read(actualDataToStore, 0, actualDataToStore.length)) != -1) {
+					buffer.write(actualDataToStore, 0, nBytesRead);
+				}
+				buffer.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			BoardGame game = new BoardGame(name, designers);
+			String id = dataService.addBoardGame(game, buffer.toByteArray(), uriInfo.getAbsolutePath().toString());
+			
+			String uriString = uriInfo.getAbsolutePath().toString() + id;
+			
+			URI uri = URI.create(uriString);
+
+			return Response.seeOther(uri).build();
+			
+		} else {
+			
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+			
+		}
     }
 }

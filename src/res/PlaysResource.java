@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import res.auth.AuthenticationDataService;
 import res.model.game.BoardGamesDataService;
 import res.model.play.Play;
 import res.model.play.PlayDataService;
@@ -27,6 +28,8 @@ import res.model.user.UsersDataService;
 public class PlaysResource {
 
 	private PlayDataService dataService = PlayDataService.getInstance();
+	private AuthenticationDataService authDataService = AuthenticationDataService.getInstance();
+	
 	@Context UriInfo uriInfo;
 	
 	public PlaysResource(UriInfo uriInfo) {
@@ -56,6 +59,7 @@ public class PlaysResource {
     public Response createPlay(
     		@FormParam("userId") String userId,
     		@FormParam("gameId") String gameId,
+    		@FormParam("token") String token,
     		@FormParam("date") String date,
     		@FormParam("time") String time,
     		@FormParam("players") String players,
@@ -63,39 +67,47 @@ public class PlaysResource {
 		
 		System.out.println("POST /play");
 		
-		DateFormat format = new SimpleDateFormat("dd/MM/yy");
-		
-		Date dateFormatted;
-		try {
-			dateFormatted = format.parse(date);
-		} catch (ParseException e) {
-			return Response.status(Response.Status.BAD_REQUEST).entity("Wrong date format - use dd/MM/yy").build();
-		}
-		
-		if(!UsersDataService.getInstance().findId(userId)){
-			return Response.status(Response.Status.BAD_REQUEST).entity("User id not found!").build();
-		}
-		if(!BoardGamesDataService.getInstance().findId(gameId)){
-			return Response.status(Response.Status.BAD_REQUEST).entity("Game id not found!").build();
-		}
-		
-		Play play = new Play(userId,gameId,dateFormatted);
-		
-		if(time.trim().length() !=0){
-			play.setTime(time);
-		}
-		if(players.trim().length() !=0){
-			play.setNumPlayers(Integer.parseInt(players.trim()));
-		}
-		if(winnerId.trim().length() != 0){
-			if(!UsersDataService.getInstance().findId(winnerId.trim())){
-				return Response.status(Response.Status.BAD_REQUEST).entity("winner id not found!").build();
+		if(authDataService.isTokenValid(token)) {
+			
+			DateFormat format = new SimpleDateFormat("dd/MM/yy");
+			
+			Date dateFormatted;
+			try {
+				dateFormatted = format.parse(date);
+			} catch (ParseException e) {
+				return Response.status(Response.Status.BAD_REQUEST).entity("Wrong date format - use dd/MM/yy").build();
 			}
-			play.setWinnerId(winnerId.trim());
+			
+			if(!UsersDataService.getInstance().findId(userId)){
+				return Response.status(Response.Status.BAD_REQUEST).entity("User id not found!").build();
+			}
+			if(!BoardGamesDataService.getInstance().findId(gameId)){
+				return Response.status(Response.Status.BAD_REQUEST).entity("Game id not found!").build();
+			}
+			
+			Play play = new Play(userId,gameId,dateFormatted);
+			
+			if(time.trim().length() !=0){
+				play.setTime(time);
+			}
+			if(players.trim().length() !=0){
+				play.setNumPlayers(Integer.parseInt(players.trim()));
+			}
+			if(winnerId.trim().length() != 0){
+				if(!UsersDataService.getInstance().findId(winnerId.trim())){
+					return Response.status(Response.Status.BAD_REQUEST).entity("winner id not found!").build();
+				}
+				play.setWinnerId(winnerId.trim());
+			}
+
+			dataService.addPlay(play);		
+
+	        return Response.ok(play, MediaType.APPLICATION_XML).build();
+	        
+		} else {
+			
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+			
 		}
-
-		dataService.addPlay(play);		
-
-        return Response.ok(play, MediaType.APPLICATION_XML).build();
     }	
 }

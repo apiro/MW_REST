@@ -14,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import res.auth.AuthenticationDataService;
 import res.model.game.BoardGame;
 import res.model.game.BoardGamesDataService;
 import res.model.play.Play;
@@ -28,6 +29,8 @@ public class InitResource {
 	private UsersDataService users_service = UsersDataService.getInstance();
 	private BoardGamesDataService games_service = BoardGamesDataService.getInstance();
 	private PlayDataService play_service = PlayDataService.getInstance();
+	private AuthenticationDataService auth_service = AuthenticationDataService.getInstance();
+	
 	private Random random = new Random();
 	
 	public InitResource() {
@@ -51,6 +54,20 @@ public class InitResource {
 		users_service.addUser(new User("maryo", "ooo", "3909988777"));
 		users_service.addUser(new User("etta", "lll", "3337788999"));
 		users_service.addUser(new User("renz", "ooo", "3773212666"));
+		
+		auth_service.addUserPassword("albi", "123");
+		auth_service.addUserPassword("jago", "123");
+		auth_service.addUserPassword("klar", "123");
+		auth_service.addUserPassword("enn", "123");
+		auth_service.addUserPassword("fudge", "123");
+		auth_service.addUserPassword("jimmy", "123");
+		auth_service.addUserPassword("trevor", "123");
+		auth_service.addUserPassword("susy", "123");
+		auth_service.addUserPassword("tuly", "123");
+		auth_service.addUserPassword("fede", "123");
+		auth_service.addUserPassword("maryo", "123");
+		auth_service.addUserPassword("etta", "123");
+		auth_service.addUserPassword("renz", "123");
 		
 		DateFormat format = new SimpleDateFormat("dd/MM/yy");
 		
@@ -94,9 +111,9 @@ public class InitResource {
 			e.printStackTrace();
 		}
 		
-		games_service.addBoardGame(new BoardGame("myGame1", "atalanta,fiorentina,cesena"), fileContent1, uri);
-		games_service.addBoardGame(new BoardGame("myGame2", "chievo,hellas,udinese"), fileContent2, uri);
-		games_service.addBoardGame(new BoardGame("myGame3", "inter,milan,roma"), fileContent3, uri);
+		games_service.addBoardGame(new BoardGame("San Siro", "atalanta,fiorentina,cesena"), fileContent1, uri);
+		games_service.addBoardGame(new BoardGame("San Paolo", "chievo,hellas,udinese"), fileContent2, uri);
+		games_service.addBoardGame(new BoardGame("Bentegodi", "inter,milan,roma"), fileContent3, uri);
 		
 		return Response.ok("Init data creation success").build();
 	}

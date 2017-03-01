@@ -25,8 +25,8 @@ public class PlayDataService {
     public void addPlay(Play play) {
     	
     	Link link_player = new Link();
-		Link link_game = new Link();
-		link_player.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/" + play.getUserId());
+    	Link link_game = new Link();
+    	link_player.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/" + play.getUserId());
 		link_player.setRel("player");
 		link_game.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + play.getGameId());
 		link_game.setRel("game");
@@ -121,10 +121,10 @@ public class PlayDataService {
 				
 				// comparedResult is negative if o1 attribute precedes o2 attribute
 				
-				if(descending == true) {
-					return comparedResult;
-				} else {
+				if(descending) {
 					return -comparedResult;
+				} else {
+					return comparedResult;
 				}
 			}
         });
