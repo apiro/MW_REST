@@ -61,7 +61,7 @@ public class AuthenticationDataService {
 	}
 	
 	public Boolean isRegistered(String username, String password) {
-		return powerUserPassword.containsKey(username);
+		return powerUserPassword.containsKey(username) && powerUserPassword.get(username).equals(password);
 	}
 	
 	public Boolean isTokenValid(String token) {
