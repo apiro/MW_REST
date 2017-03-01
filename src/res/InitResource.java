@@ -1,18 +1,22 @@
 package res;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 import res.auth.AuthenticationDataService;
@@ -39,8 +43,7 @@ public class InitResource {
 	}
 	
 	@GET
-	public Response initDataServices() throws ParseException {
-		
+	public Response initDataServices(@Context ServletContext ctx) throws ParseException {
 		users_service.addUser(new User("albi", "rrr", "3409090800"));
 		users_service.addUser(new User("jago", "ggg", "3489678967"));
 		users_service.addUser(new User("klar", "hhh", "3409090800"));
@@ -93,21 +96,17 @@ public class InitResource {
 		play_service.addPlay(new Play("6", "3", format.parse(format.format(new Date(random.nextLong()))), 1));
 		play_service.addPlay(new Play("1", "3", format.parse(format.format(new Date(random.nextLong()))), 4));
 		
-		//TODO path that starts from the project root
-		File imgPath1 = new File("/Users/albertomariopirovano/Documents/Programming/workspace/BroadGamesREST/resources/frank.png");
-		File imgPath2 = new File("/Users/albertomariopirovano/Documents/Programming/workspace/BroadGamesREST/resources/orange.png");
-		File imgPath3 = new File("/Users/albertomariopirovano/Documents/Programming/workspace/BroadGamesREST/resources/red.png");
-
 		byte[] fileContent1 = null;
 		byte[] fileContent2 = null;
 		byte[] fileContent3 = null;
-		
+
 		String uriStringGames = "http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/";
 		
 		try {
-			fileContent1 = Files.readAllBytes(imgPath1.toPath());
-			fileContent2 = Files.readAllBytes(imgPath2.toPath());
-			fileContent3 = Files.readAllBytes(imgPath3.toPath());
+			String resourcesPath = ctx.getRealPath("/resources");
+			fileContent1 = Files.readAllBytes(Paths.get(resourcesPath + "/frank.png"));
+			fileContent2 = Files.readAllBytes(Paths.get(resourcesPath + "/orange.png"));
+			fileContent3 = Files.readAllBytes(Paths.get(resourcesPath + "/red.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
