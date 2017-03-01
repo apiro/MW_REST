@@ -2,10 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <title>Guest Page</title>
 </head>
 <body>
-<h1>Search User</h1>
+<div class="container">
+	<h1 class="text-center">Guest Area</h1>
+</div>
+<div class="container" style="border:1px solid #cecece;">
+<h3 >Search User</h3>
 
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users/search/" method="post" enctype="application/x-www-form-urlencoded">
 
@@ -46,9 +51,10 @@
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users" method="get">
 	   <input type="submit" value="List All" />
 	</form>
-	
-	
-<h1>Search Board Game</h1>
+</div>	
+<br>
+<div class="container" style="border:1px solid #cecece;">
+<h3>Search Board Game</h3>
 
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/search/" method="post" enctype="application/x-www-form-urlencoded">
 
@@ -83,8 +89,10 @@
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames" method="get">
 	   <input type="submit" value="List All" />
 	</form>
-	
-<h1>Search Play</h1>
+</div>
+<br>
+<div class="container" style="border:1px solid #cecece;">
+<h3>Search Play</h3>
 
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/plays/search/" method="post" enctype="application/x-www-form-urlencoded">
 	   <p>
@@ -117,6 +125,7 @@
 	   
 	   <input type="submit" value="Search" />
 	</form>
-	
+</div>
+<br>
 </body>
 </html>

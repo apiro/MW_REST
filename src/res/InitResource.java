@@ -2,6 +2,7 @@ package res;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -101,7 +102,7 @@ public class InitResource {
 		byte[] fileContent2 = null;
 		byte[] fileContent3 = null;
 		
-		String uri = "http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/";
+		String uriStringGames = "http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/";
 		
 		try {
 			fileContent1 = Files.readAllBytes(imgPath1.toPath());
@@ -111,10 +112,13 @@ public class InitResource {
 			e.printStackTrace();
 		}
 		
-		games_service.addBoardGame(new BoardGame("San Siro", "atalanta,fiorentina,cesena"), fileContent1, uri);
-		games_service.addBoardGame(new BoardGame("San Paolo", "chievo,hellas,udinese"), fileContent2, uri);
-		games_service.addBoardGame(new BoardGame("Bentegodi", "inter,milan,roma"), fileContent3, uri);
+		games_service.addBoardGame(new BoardGame("San Siro", "atalanta,fiorentina,cesena"), fileContent1, uriStringGames);
+		games_service.addBoardGame(new BoardGame("San Paolo", "chievo,hellas,udinese"), fileContent2, uriStringGames);
+		games_service.addBoardGame(new BoardGame("Bentegodi", "inter,milan,roma"), fileContent3, uriStringGames);
 		
-		return Response.ok("Init data creation success").build();
+		String uriString = "http://localhost:8080/BroadGamesREST/";
+		URI uriFinal = URI.create(uriString);
+		
+		return Response.seeOther(uriFinal).build();
 	}
 }

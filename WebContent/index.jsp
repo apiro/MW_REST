@@ -6,14 +6,18 @@
   <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     	<title>GlassFish JSP Page</title>
-    	<link href="dist/css/bootstrap.css" rel="stylesheet" />
-		<link href="dist/css/bootstrap-theme.css" rel="stylesheet" />
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
-     
-     <a class="btn btn-primary" href="./User.html" >Users</a>
-     <a class="btn btn-primary" href="./Game.html" >Games</a>
-     <a class="btn btn-primary" href="./Play.html" >Plays</a>
-
+     <div class="container">
+     	<h1> Hello World </h1>
+     	<div class="container btn-toolbar">
+	     	<a class="btn btn-primary btn-sm" href="./register.html" >Register</a>
+	     	<a class="btn btn-primary btn-sm" href="./login.html" >Login</a>
+	     	<a class="btn btn-primary btn-sm" href="http://localhost:8080/BroadGamesREST/jaxrs/init" >Init with sample data</a>
+	     	<a class="btn btn-primary btn-sm" href="./guest.html" >Guest Area</a>
+	    </div>
+	</div>
+	<br>
   </body>
 </html> 

@@ -39,7 +39,7 @@ public class PlaysFilterResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
-		System.out.println("> POST /plays/filter");
+		System.out.println("> POST /plays/search");
 		
 		setFilters(formParams);
 

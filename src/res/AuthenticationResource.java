@@ -16,43 +16,29 @@ public class AuthenticationResource {
 	private AuthenticationDataService authDataService = AuthenticationDataService.getInstance();
 
 	@POST
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.TEXT_HTML})
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response authenticateUser(@FormParam("username") String username, 
                                      @FormParam("password") String password) {
 
 		System.out.println("POST /auth");
 		
-        try {
+		if(Boolean.TRUE.equals(authDataService.isRegistered(username, password))) {
+			// Issue a token for the user
+            String token = authDataService.addUserToken(username);
 
-            // Authenticate the user using the credentials provided
-            authenticate(username, password);
+            String htmlToBeReturned = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">"
+            		+ "<title>Power User Page</title>"
+            		+ "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">"
+            		+ "</head><body><h1 class=\"text-center\">Power User Personal Page</h1>"
+            		+ "<div class=\"container\" style=\"border:1px solid #cecece;\"><br><h3>Your Token</h3><p class=\"text-success\">" + token + "</p>"
+            		+ "<div class=\"container btn-toolbar\"><a class=\"btn btn-primary btn-sm\" href=\"http://localhost:8080/BroadGamesREST/game.html\" >Games</a><a class=\"btn btn-primary btn-sm\" href=\"http://localhost:8080/BroadGamesREST/play.html\" >Plays</a></div><br></div>"
+            		+ "</body></html>";
             
-            // Issue a token for the user
-            String token = issueToken(username);
-
-            // Return the token on the response
-            return Response.ok(token).build();
-
-        } catch (Exception e) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-        }      
-    }
-
-    private void authenticate(String username, String password) throws Exception {
-        // Authenticate against a database, LDAP, file or whatever
-        // Throw an Exception if the credentials are invalid
-    	Boolean flag = authDataService.isRegistered(username, password);
-    	if(flag.equals(Boolean.FALSE)) {
-    		Exception e = new Exception();
-    		throw e;
-    	}
-    }
-
-    private String issueToken(String username) {
-        // Issue a token (can be a random String persisted to a database or a JWT token)
-        // The issued token must be associated to a user
-        // Return the issued token
-    	return authDataService.addUserToken(username);
+            return Response.ok(htmlToBeReturned).build();
+            
+		} else {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
+		}
     }
 }

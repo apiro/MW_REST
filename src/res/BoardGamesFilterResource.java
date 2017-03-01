@@ -40,7 +40,7 @@ public class BoardGamesFilterResource {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response filter(MultivaluedMap<String, String> formParams) throws URISyntaxException {
 		
-		System.out.println("> POST /boardGames/filter");
+		System.out.println("> POST /boardGames/search");
 		
 		setFilters(formParams);
 
