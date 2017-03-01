@@ -6,8 +6,23 @@
 <title>Guest Page</title>
 </head>
 <body>
-<div class="container">
-	<h1 class="text-center">Guest Area</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">BoardGameREST</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="./index.jsp">Home</a></li>
+      <li><a href="./register.html">Register</a></li>
+      <li><a href="./login.html" >Login</a></li>
+      <li><a href="http://localhost:8080/BroadGamesREST/jaxrs/init" >Init with sample data</a></li>
+      <li><a href="./guest.html" >Guest Area</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container" style="margin-top:50px">
+  <h1>Guest Area</h1>
+  <p>--- Comment here ---</p>
 </div>
 <div class="container" style="border:1px solid #cecece;">
 <h3 >Search User</h3>
@@ -47,10 +62,11 @@
 	   
 	   <input type="submit" value="Search" />
 	</form>
-	
+	<br>
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/users" method="get">
 	   <input type="submit" value="List All" />
 	</form>
+	<br>
 </div>	
 <br>
 <div class="container" style="border:1px solid #cecece;">
@@ -85,10 +101,11 @@
 
 	   <input type="submit" value="Search" />
 	</form>
-
+	<br>
 	<form action="http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames" method="get">
 	   <input type="submit" value="List All" />
 	</form>
+	<br>
 </div>
 <br>
 <div class="container" style="border:1px solid #cecece;">
@@ -125,6 +142,7 @@
 	   
 	   <input type="submit" value="Search" />
 	</form>
+	<br>
 </div>
 <br>
 </body>
