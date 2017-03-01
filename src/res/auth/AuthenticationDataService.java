@@ -1,6 +1,7 @@
 package res.auth;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class AuthenticationDataService {
 	// passwords should not be exchanged in plain text, we should use an hash of them. But for now I build the skeleton of
@@ -65,10 +66,14 @@ public class AuthenticationDataService {
 	}
 	
 	public Boolean isTokenValid(String token) {
-		if(powerUserToken.containsKey(token) && Boolean.FALSE.equals(powerUserToken.get(token).getExpired())) {
-			return Boolean.TRUE;
-		} else {
-			return Boolean.FALSE;
+		
+		Iterator<Token> it = powerUserToken.values().iterator();
+		while(it.hasNext()) {
+			Token tk = it.next();
+			if(tk.getToken().equals(token) && Boolean.FALSE.equals(tk.getExpired())){
+				return Boolean.TRUE;
+			}
 		}
+		return Boolean.FALSE;
 	}
 }
