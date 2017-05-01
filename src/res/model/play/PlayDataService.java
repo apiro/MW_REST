@@ -27,11 +27,11 @@ public class PlayDataService {
     	
     	Link link_player = new Link();
     	link_player.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/boardGames/" + play.getUserId());
-		link_player.setRel("player");
+		link_player.setRel("game");
 		
 		Link link_game = new Link();
 		link_game.setHref("http://localhost:8080/BroadGamesREST/jaxrs/api/users/" + play.getGameId());
-		link_game.setRel("game");
+		link_game.setRel("player");
 		
 		play.addLink(link_game);
 		play.addLink(link_player);
